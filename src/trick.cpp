@@ -1,45 +1,14 @@
-#pragma once
-#include "common.h"
-#include "utils.cpp"
-#include "card.cpp"
+#include "trick.h"
 
-Suit trump;
+template <uint8_t n>
+Trick<n>::Trick(Card c): lead(c.suit()) {cards[size++] = c;}
 
-char* get_trump_name(){
-    switch (trump)
-    {
-    case SPADES:
-        return (char*) "Spades";
-    case DIAMONDS:
-        return (char*) "Diamonds";
-    case CLUBS:
-        return (char*) "Clubs";
-    case HEARTS:
-        return (char*) "Hearts";
-    default:
-        return (char*) "?";
-    }
+template <uint8_t n>
+void Trick<n>::add(Card c) {cards[size++] = c;}
+
+template <uint8_t n>
+uint8_t Trick<n>::winner(){
+    uint8_t i = 0;
+    for(int j=0; j<n; j++) i = (cards[j]>cards[i])?j:i;
+    return i;
 }
-
-class Trick
-{
-public:
-    vector<Card> cards;
-    Trick(): cards() {}
-    
-    int winner(){
-        int leadSuite = cards[0].suit;
-        int best_i = 0;
-        for(int i=1; i<cards.size(); i++){
-            if(cards[i].suit == cards[best_i].suit){
-                if(cards[i].value > cards[best_i].value){
-                    best_i = i;
-                }
-            }
-            else if(cards[i].suit == trump){
-                best_i = i;
-            }
-        }
-        return best_i;
-    }
-};
