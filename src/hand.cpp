@@ -1,7 +1,10 @@
 #include "hand.h"
 
 template <uint8_t n>
-void Hand<n>::remove(Card& x){std::swap(x, cards[--size]);}
+void Hand<n>::remove(uint8_t k){
+
+    std::swap(cards[k], cards[--size]);
+}
 
 // template <uint8_t n>
 // Hand<n>::Hand(Card cs[n]): size(n) {cards = (Card[n]) cs;}
@@ -30,9 +33,9 @@ Hand<n>::Iterator Hand<n>::end() {return Hand<n>::Iterator(&cards[size]);}
 
 template <uint8_t n>
 std::ostream& operator<<(std::ostream& stream, Hand<n>& x){
-    for(auto card: x) std::cout << card << ' '; std::cout << std::endl;
+    for(auto card: x) std::cout << card << ' '; std::cout << RESET << std::endl;
     return stream;
 }
 
-template std::ostream& operator<<(std::ostream& stream, Hand<T>& x);
-template struct Hand<T>;
+template std::ostream& operator<<(std::ostream& stream, Hand<NT>& x);
+template struct Hand<NT>;

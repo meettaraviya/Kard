@@ -11,7 +11,7 @@ struct Hand{
     // Hand(Card[n]);
     Hand();
 
-    void remove(Card&);
+    void remove(uint8_t);
 
     struct Iterator
     {

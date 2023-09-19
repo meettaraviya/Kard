@@ -13,7 +13,7 @@ OBJECTS := $(patsubst src%,obj%, $(patsubst %.c,%.o, $(patsubst %.cpp,%.o,$(SOUR
 
 INCLUDE := -I./inc/
 LIBPATH :=
-LIBS :=
+LIBS := -lfann
 VARS :=
 
 FLAGS := -Wall -std=c++20 -w -g -fno-stack-protector
